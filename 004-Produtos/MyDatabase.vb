@@ -16,7 +16,19 @@ Public Class MyDatabase
     End Function
 
     Public Function ObterTodosProdutos() As DataTable
-        Dim ssql As String = "SELECT id, nome, qtd FROM produto"
+        Dim ssql As String = "SELECT p.id AS 'Cód.', p.nome AS 'Designação', c.nome AS 'Categoria', p.qtd AS 'Qdt.' FROM produto p INNER JOIN categoria c ON p.categoria_id=c.id"
+        Return ObterDados(ssql)
+    End Function
+
+    Public Function ObterProdutosDeCategoria(id_categoria As Integer) As DataTable
+        Dim ssql As String = "SELECT p.id AS 'Cód.', p.nome AS 'Designação', c.nome AS 'Categoria', p.qtd AS 'Qdt.' FROM produto p INNER JOIN categoria c ON p.categoria_id=c.id"
+        ssql += " WHERE c.id=" + id_categoria.ToString
+        Return ObterDados(ssql)
+    End Function
+
+
+    Public Function ObterTodasCategorias() As DataTable
+        Dim ssql As String = "SELECT id, nome FROM categoria ORDER BY nome"
         Return ObterDados(ssql)
     End Function
 
