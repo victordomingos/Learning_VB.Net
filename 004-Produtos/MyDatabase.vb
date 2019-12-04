@@ -62,16 +62,40 @@ Public Class MyDatabase
         Return ObterDados(ssql)
     End Function
 
-
-    Public Function InserirAssociado(nome As String, qtd As Integer) As Integer
+    Public Function AtualizarProduto(id As Integer, nome As String, qtd As Integer, categoria_id As Integer) As Integer
         Using c As New SqlConnection(Config.SC)
             c.Open()
-            Dim ssql = "INSERT INTO produto (nome, qtd) 
-                        VALUES (@nome, @qtd);"
+            Dim ssql = "UPDATE produto
+                        SET nome=@nome, qtd=@qtd, categoria_id=@categoria_id
+                        WHERE id=@id;"
 
             Using comando As New SqlCommand(ssql, c)
                 comando.Parameters.AddWithValue("@nome", nome)
                 comando.Parameters.AddWithValue("@qtd", qtd)
+                comando.Parameters.AddWithValue("@categoria_id", categoria_id)
+                comando.Parameters.AddWithValue("@id", id)
+
+                Try
+                    comando.ExecuteNonQuery()
+                Catch
+                    Return 1
+                End Try
+
+                Return 0
+            End Using
+        End Using
+    End Function
+
+    Public Function InserirProduto(nome As String, qtd As Integer, categoria_id As Integer) As Integer
+        Using c As New SqlConnection(Config.SC)
+            c.Open()
+            Dim ssql = "INSERT INTO produto (nome, qtd, categoria_id) 
+                        VALUES (@nome, @qtd, @categoria_id);"
+
+            Using comando As New SqlCommand(ssql, c)
+                comando.Parameters.AddWithValue("@nome", nome)
+                comando.Parameters.AddWithValue("@qtd", qtd)
+                comando.Parameters.AddWithValue("@categoria_id", categoria_id)
 
                 Try
                     comando.ExecuteNonQuery()

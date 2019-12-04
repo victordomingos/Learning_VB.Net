@@ -35,6 +35,8 @@ Partial Class GestorProdutos
         Me.btn_cancelar = New System.Windows.Forms.Button()
         Me.btn_guardar = New System.Windows.Forms.Button()
         Me.grp_detalhes = New System.Windows.Forms.GroupBox()
+        Me.lbl_unsaved_Changes = New System.Windows.Forms.Label()
+        Me.txt_cod_produto = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -42,8 +44,6 @@ Partial Class GestorProdutos
         Me.txt_qtd = New System.Windows.Forms.TextBox()
         Me.txt_designacao = New System.Windows.Forms.TextBox()
         Me.cmb_detalhes_categoria = New System.Windows.Forms.ComboBox()
-        Me.txt_cod_produto = New System.Windows.Forms.TextBox()
-        Me.lbl_unsaved_Changes = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.grid1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -171,6 +171,25 @@ Partial Class GestorProdutos
         Me.grp_detalhes.TabStop = False
         Me.grp_detalhes.Text = "Detalhes"
         '
+        'lbl_unsaved_Changes
+        '
+        Me.lbl_unsaved_Changes.AutoSize = True
+        Me.lbl_unsaved_Changes.ForeColor = System.Drawing.Color.Red
+        Me.lbl_unsaved_Changes.Location = New System.Drawing.Point(77, 142)
+        Me.lbl_unsaved_Changes.Name = "lbl_unsaved_Changes"
+        Me.lbl_unsaved_Changes.Size = New System.Drawing.Size(140, 13)
+        Me.lbl_unsaved_Changes.TabIndex = 15
+        Me.lbl_unsaved_Changes.Text = "Tem alterações por guardar."
+        Me.lbl_unsaved_Changes.Visible = False
+        '
+        'txt_cod_produto
+        '
+        Me.txt_cod_produto.Enabled = False
+        Me.txt_cod_produto.Location = New System.Drawing.Point(80, 24)
+        Me.txt_cod_produto.Name = "txt_cod_produto"
+        Me.txt_cod_produto.Size = New System.Drawing.Size(70, 20)
+        Me.txt_cod_produto.TabIndex = 14
+        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -232,25 +251,6 @@ Partial Class GestorProdutos
         Me.cmb_detalhes_categoria.Name = "cmb_detalhes_categoria"
         Me.cmb_detalhes_categoria.Size = New System.Drawing.Size(202, 21)
         Me.cmb_detalhes_categoria.TabIndex = 7
-        '
-        'txt_cod_produto
-        '
-        Me.txt_cod_produto.Enabled = False
-        Me.txt_cod_produto.Location = New System.Drawing.Point(80, 24)
-        Me.txt_cod_produto.Name = "txt_cod_produto"
-        Me.txt_cod_produto.Size = New System.Drawing.Size(70, 20)
-        Me.txt_cod_produto.TabIndex = 14
-        '
-        'lbl_unsaved_Changes
-        '
-        Me.lbl_unsaved_Changes.AutoSize = True
-        Me.lbl_unsaved_Changes.ForeColor = System.Drawing.Color.Red
-        Me.lbl_unsaved_Changes.Location = New System.Drawing.Point(77, 142)
-        Me.lbl_unsaved_Changes.Name = "lbl_unsaved_Changes"
-        Me.lbl_unsaved_Changes.Size = New System.Drawing.Size(140, 13)
-        Me.lbl_unsaved_Changes.TabIndex = 15
-        Me.lbl_unsaved_Changes.Text = "Tem alterações por guardar."
-        Me.lbl_unsaved_Changes.Visible = False
         '
         'GestorProdutos
         '
