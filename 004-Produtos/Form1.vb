@@ -6,6 +6,7 @@
 
     Private Sub GestorProdutos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         InitComboBox(cmb_categorias, True)
+        InitComboBox(cmb_detalhes_categoria, False)
         SetUnsavedChanges(False)
         cmb_categorias.SelectedIndex = 0
         AtualizaGrid()
@@ -52,6 +53,8 @@
         cmbox.DataSource = dt
         cmbox.DisplayMember = "nome"
         cmbox.ValueMember = "id"
+
+        cmbox.DropDownStyle = ComboBoxStyle.DropDownList
     End Sub
 
 
@@ -172,6 +175,9 @@
             SetUnsavedChanges(False)
             LimparForm()
             AtualizaGrid()
+            InitComboBox(cmb_categorias, True)
+            InitComboBox(cmb_detalhes_categoria, False)
+            SetUnsavedChanges(False)
         Else
             MessageBox.Show("Por favor verifique os valores introduzidos.")
         End If
@@ -189,6 +195,8 @@
             SetUnsavedChanges(False)
             LimparForm()
             AtualizaGrid()
+            InitComboBox(cmb_categorias, True)
+            InitComboBox(cmb_detalhes_categoria, False)
         Else
             MessageBox.Show("Por favor verifique os valores introduzidos.")
         End If
@@ -203,4 +211,32 @@
         status = status And (cmb_detalhes_categoria.SelectedValue > 0)
         Return status
     End Function
+
+    Private Sub btn_Eliminar_Click(sender As Object, e As EventArgs) Handles btn_Eliminar.Click
+        DeleteSelected()
+    End Sub
+
+    Public Sub DeleteSelected()
+        Dim selectedProduct As Integer
+        If grid1.Rows.Count = 0 Then
+            MessageBox.Show("Não há registos para eliminar.")
+        Else
+            Try
+                If Integer.TryParse(grid1.SelectedRows(0).Cells(0).Value, selectedProduct) Then
+                    db.DeleteProduct(selectedProduct)
+                    LimparForm()
+                    AtualizaGrid()
+                    InitComboBox(cmb_categorias, True)
+                Else
+                    MessageBox.Show("Para eliminar um registo, primeiro deve selecioná-lo.")
+                End If
+            Catch
+                MessageBox.Show("Para eliminar um registo, primeiro deve selecioná-lo.")
+            End Try
+        End If
+    End Sub
+
+    Private Sub btn_criar_produto_Click(sender As Object, e As EventArgs) Handles btn_criar_produto.Click
+        LimparForm()
+    End Sub
 End Class

@@ -29,8 +29,8 @@ Partial Class GestorProdutos
         Me.lbl_status = New System.Windows.Forms.ToolStripStatusLabel()
         Me.grid1 = New System.Windows.Forms.DataGridView()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
+        Me.btn_criar_produto = New System.Windows.Forms.ToolStripButton()
+        Me.btn_Eliminar = New System.Windows.Forms.ToolStripButton()
         Me.cmb_categorias = New System.Windows.Forms.ComboBox()
         Me.btn_cancelar = New System.Windows.Forms.Button()
         Me.btn_guardar = New System.Windows.Forms.Button()
@@ -95,32 +95,32 @@ Partial Class GestorProdutos
         Me.grid1.Name = "grid1"
         Me.grid1.RowHeadersWidth = 82
         Me.grid1.Size = New System.Drawing.Size(496, 368)
-        Me.grid1.TabIndex = 4
+        Me.grid1.TabIndex = 5
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.ToolStripButton2})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btn_criar_produto, Me.btn_Eliminar})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 24)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(802, 25)
         Me.ToolStrip1.TabIndex = 5
         Me.ToolStrip1.Text = "ToolStrip1"
         '
-        'ToolStripButton1
+        'btn_criar_produto
         '
-        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
-        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(98, 22)
-        Me.ToolStripButton1.Text = "Criar Produto"
+        Me.btn_criar_produto.Image = CType(resources.GetObject("btn_criar_produto.Image"), System.Drawing.Image)
+        Me.btn_criar_produto.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btn_criar_produto.Name = "btn_criar_produto"
+        Me.btn_criar_produto.Size = New System.Drawing.Size(98, 22)
+        Me.btn_criar_produto.Text = "Criar Produto"
         '
-        'ToolStripButton2
+        'btn_Eliminar
         '
-        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
-        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton2.Name = "ToolStripButton2"
-        Me.ToolStripButton2.Size = New System.Drawing.Size(70, 22)
-        Me.ToolStripButton2.Text = "Eliminar"
+        Me.btn_Eliminar.Image = CType(resources.GetObject("btn_Eliminar.Image"), System.Drawing.Image)
+        Me.btn_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btn_Eliminar.Name = "btn_Eliminar"
+        Me.btn_Eliminar.Size = New System.Drawing.Size(70, 22)
+        Me.btn_Eliminar.Text = "Eliminar"
         '
         'cmb_categorias
         '
@@ -130,14 +130,14 @@ Partial Class GestorProdutos
         Me.cmb_categorias.Margin = New System.Windows.Forms.Padding(2)
         Me.cmb_categorias.Name = "cmb_categorias"
         Me.cmb_categorias.Size = New System.Drawing.Size(284, 21)
-        Me.cmb_categorias.TabIndex = 0
+        Me.cmb_categorias.TabIndex = 6
         '
         'btn_cancelar
         '
         Me.btn_cancelar.Location = New System.Drawing.Point(129, 169)
         Me.btn_cancelar.Name = "btn_cancelar"
         Me.btn_cancelar.Size = New System.Drawing.Size(75, 23)
-        Me.btn_cancelar.TabIndex = 1
+        Me.btn_cancelar.TabIndex = 3
         Me.btn_cancelar.Text = "Cancelar"
         Me.btn_cancelar.UseVisualStyleBackColor = True
         '
@@ -146,7 +146,7 @@ Partial Class GestorProdutos
         Me.btn_guardar.Location = New System.Drawing.Point(210, 169)
         Me.btn_guardar.Name = "btn_guardar"
         Me.btn_guardar.Size = New System.Drawing.Size(75, 23)
-        Me.btn_guardar.TabIndex = 0
+        Me.btn_guardar.TabIndex = 4
         Me.btn_guardar.Text = "Guardar"
         Me.btn_guardar.UseVisualStyleBackColor = True
         '
@@ -232,7 +232,7 @@ Partial Class GestorProdutos
         Me.txt_qtd.Location = New System.Drawing.Point(80, 113)
         Me.txt_qtd.Name = "txt_qtd"
         Me.txt_qtd.Size = New System.Drawing.Size(70, 20)
-        Me.txt_qtd.TabIndex = 9
+        Me.txt_qtd.TabIndex = 2
         '
         'txt_designacao
         '
@@ -240,17 +240,18 @@ Partial Class GestorProdutos
         Me.txt_designacao.Location = New System.Drawing.Point(80, 62)
         Me.txt_designacao.Name = "txt_designacao"
         Me.txt_designacao.Size = New System.Drawing.Size(202, 20)
-        Me.txt_designacao.TabIndex = 8
+        Me.txt_designacao.TabIndex = 0
         '
         'cmb_detalhes_categoria
         '
+        Me.cmb_detalhes_categoria.AllowDrop = True
         Me.cmb_detalhes_categoria.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmb_detalhes_categoria.FormattingEnabled = True
         Me.cmb_detalhes_categoria.Location = New System.Drawing.Point(80, 87)
         Me.cmb_detalhes_categoria.Margin = New System.Windows.Forms.Padding(2)
         Me.cmb_detalhes_categoria.Name = "cmb_detalhes_categoria"
         Me.cmb_detalhes_categoria.Size = New System.Drawing.Size(202, 21)
-        Me.cmb_detalhes_categoria.TabIndex = 7
+        Me.cmb_detalhes_categoria.TabIndex = 1
         '
         'GestorProdutos
         '
@@ -285,8 +286,8 @@ Partial Class GestorProdutos
     Friend WithEvents lbl_status As ToolStripStatusLabel
     Friend WithEvents grid1 As DataGridView
     Friend WithEvents ToolStrip1 As ToolStrip
-    Friend WithEvents ToolStripButton1 As ToolStripButton
-    Friend WithEvents ToolStripButton2 As ToolStripButton
+    Friend WithEvents btn_criar_produto As ToolStripButton
+    Friend WithEvents btn_Eliminar As ToolStripButton
     Friend WithEvents cmb_categorias As ComboBox
     Friend WithEvents btn_cancelar As Button
     Friend WithEvents btn_guardar As Button

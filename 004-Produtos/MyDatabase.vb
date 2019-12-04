@@ -107,4 +107,23 @@ Public Class MyDatabase
             End Using
         End Using
     End Function
+
+    Public Function DeleteProduct(id)
+        Using c As New SqlConnection(Config.SC)
+            c.Open()
+            Dim ssql = "DELETE FROM produto WHERE id=@id;"
+
+            Using comando As New SqlCommand(ssql, c)
+                comando.Parameters.AddWithValue("@id", id)
+
+                Try
+                    comando.ExecuteNonQuery()
+                Catch
+                    Return 1
+                End Try
+
+                Return 0
+            End Using
+        End Using
+    End Function
 End Class
