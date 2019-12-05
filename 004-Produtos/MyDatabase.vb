@@ -45,7 +45,7 @@ Public Class MyDatabase
     End Function
 
     Public Function ObterCategoriasComProdutosEmStock() As DataTable
-        Dim ssql = "SELECT c.id as id, c.nome as nome
+        Dim ssql = "SELECT DISTINCT c.id as id, c.nome as nome
                     FROM categoria c 
                         INNER JOIN produto p 
                             ON p.categoria_id=c.id 
