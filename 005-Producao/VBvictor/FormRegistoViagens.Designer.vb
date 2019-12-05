@@ -40,10 +40,15 @@ Partial Class FormRegistoViagens
         Me.txt_km = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.lbx_viatura_mais_km = New System.Windows.Forms.ListBox()
+        Me.btn_viatura_mais_km = New System.Windows.Forms.Button()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.MenuStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.grid1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -51,7 +56,7 @@ Partial Class FormRegistoViagens
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FicheiroToolStripMenuItem, Me.AjudaToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(800, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(843, 24)
         Me.MenuStrip1.TabIndex = 0
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -69,10 +74,10 @@ Partial Class FormRegistoViagens
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btn_limpar_bd, Me.btn_lancar_registos, Me.btn_listar, Me.btn_limpar_grid, Me.btn_viagens2dias, Me.cmb_filtro})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btn_limpar_bd, Me.btn_lancar_registos, Me.btn_listar, Me.btn_limpar_grid, Me.btn_viagens2dias, Me.cmb_filtro, Me.ToolStripButton1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 24)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(800, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(843, 25)
         Me.ToolStrip1.TabIndex = 1
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -127,7 +132,7 @@ Partial Class FormRegistoViagens
         '
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 571)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(800, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(843, 22)
         Me.StatusStrip1.TabIndex = 2
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -136,7 +141,7 @@ Partial Class FormRegistoViagens
         Me.grid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.grid1.Location = New System.Drawing.Point(0, 52)
         Me.grid1.Name = "grid1"
-        Me.grid1.Size = New System.Drawing.Size(553, 516)
+        Me.grid1.Size = New System.Drawing.Size(590, 516)
         Me.grid1.TabIndex = 3
         '
         'GroupBox1
@@ -145,7 +150,7 @@ Partial Class FormRegistoViagens
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.txt_km)
         Me.GroupBox1.Controls.Add(Me.txt_marca)
-        Me.GroupBox1.Location = New System.Drawing.Point(571, 103)
+        Me.GroupBox1.Location = New System.Drawing.Point(596, 104)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(200, 92)
         Me.GroupBox1.TabIndex = 4
@@ -184,11 +189,48 @@ Partial Class FormRegistoViagens
         Me.Button1.Text = "Calcular km"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.btn_viatura_mais_km)
+        Me.GroupBox2.Controls.Add(Me.lbx_viatura_mais_km)
+        Me.GroupBox2.Location = New System.Drawing.Point(596, 222)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(200, 100)
+        Me.GroupBox2.TabIndex = 5
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Viatura com mais km"
+        '
+        'lbx_viatura_mais_km
+        '
+        Me.lbx_viatura_mais_km.FormattingEnabled = True
+        Me.lbx_viatura_mais_km.Location = New System.Drawing.Point(9, 47)
+        Me.lbx_viatura_mais_km.Name = "lbx_viatura_mais_km"
+        Me.lbx_viatura_mais_km.Size = New System.Drawing.Size(185, 43)
+        Me.lbx_viatura_mais_km.TabIndex = 0
+        '
+        'btn_viatura_mais_km
+        '
+        Me.btn_viatura_mais_km.Location = New System.Drawing.Point(9, 18)
+        Me.btn_viatura_mais_km.Name = "btn_viatura_mais_km"
+        Me.btn_viatura_mais_km.Size = New System.Drawing.Size(185, 23)
+        Me.btn_viatura_mais_km.TabIndex = 1
+        Me.btn_viatura_mais_km.Text = "Atualizar"
+        Me.btn_viatura_mais_km.UseVisualStyleBackColor = True
+        '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(115, 22)
+        Me.ToolStripButton1.Text = "Atualizar Registo"
+        '
         'FormRegistoViagens
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 593)
+        Me.ClientSize = New System.Drawing.Size(843, 593)
+        Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.grid1)
         Me.Controls.Add(Me.StatusStrip1)
@@ -204,6 +246,7 @@ Partial Class FormRegistoViagens
         CType(Me.grid1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -226,4 +269,8 @@ Partial Class FormRegistoViagens
     Friend WithEvents Label1 As Label
     Friend WithEvents txt_km As TextBox
     Friend WithEvents txt_marca As TextBox
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents btn_viatura_mais_km As Button
+    Friend WithEvents lbx_viatura_mais_km As ListBox
+    Friend WithEvents ToolStripButton1 As ToolStripButton
 End Class

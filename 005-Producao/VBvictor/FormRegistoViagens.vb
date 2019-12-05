@@ -31,7 +31,7 @@
         grid1.Columns(2).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         grid1.AllowUserToAddRows = False
         grid1.RowHeadersVisible = False
-        grid1.ReadOnly = True
+        grid1.ReadOnly = False
         grid1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
 
     End Sub
@@ -108,5 +108,31 @@
         Dim veiculo_id = db.ObterPrimeiroVeiculoPorMarca(txt_marca.Text)
         Dim km = db.ObterDistanciaTotalPorVeiculo(veiculo_id)
         txt_km.Text = km.ToString
+    End Sub
+
+    Private Sub btn_viatura_mais_km_Click(sender As Object, e As EventArgs) Handles btn_viatura_mais_km.Click
+        lbx_viatura_mais_km.Items.Clear()
+        Dim marca = ""
+        Dim km = 0
+        For Each r In grid1.Rows
+            If km < r.Cells(3).Value Then
+                km = r.Cells(3).Value
+                marca = r.Cells(1).Value
+            End If
+        Next
+        lbx_viatura_mais_km.Items.Add(marca)
+    End Sub
+
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        Try
+            Dim r = grid1.CurrentRow()
+            Dim veiculo_id = db.ObterPrimeiroVeiculoPorMarca(r.Cells(1).Value)
+            Dim dias = Convert.ToInt32(r.Cells(2).Value)
+            Dim km = Convert.ToInt32(r.Cells(2).Value)
+            db.AtualizarViagem(veiculo_id, dias, km)
+        Catch
+            MessageBox.Show("Por favor, verifique os dados introduzidos.")
+        End Try
+
     End Sub
 End Class
