@@ -139,14 +139,15 @@ Public Class MyDatabase
         Return n
     End Function
 
-    Public Function AtualizarViagem(veiculo_id As Integer, dias As Integer, km As Integer)
+    Public Function AtualizarViagem(viagem_id As Integer, veiculo_id As Integer, dias As Integer, km As Integer)
         Using c As New SqlConnection(Config.SC)
             c.Open()
-            Dim ssql = "UPDATE viagem
-                            SET veiculo_id=@veiculo_id, dias=@dias, km=@km
-                            WHERE id=@id;"
+            Dim ssql = "UPDATE viagem 
+                        SET veiculo_id=@veiculo_id, dias=@dias, km=@km
+                        WHERE id=@viagem_id;"
 
             Using comando As New SqlCommand(ssql, c)
+                comando.Parameters.AddWithValue("@viagem_id", viagem_id)
                 comando.Parameters.AddWithValue("@veiculo_id", veiculo_id)
                 comando.Parameters.AddWithValue("@dias", dias)
                 comando.Parameters.AddWithValue("@km", km)

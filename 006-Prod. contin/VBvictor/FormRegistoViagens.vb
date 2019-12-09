@@ -1,6 +1,6 @@
 ﻿Public Class FormRegistoViagens
     Dim db As New MyDatabase
-    Dim UnsavedChanges = False
+    Dim UnsavedChangesList As New HashSet(Of Integer)
 
     Private Sub FormRegistoViagens_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         cmb_filtro.SelectedIndex = 0
@@ -105,9 +105,14 @@
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim veiculo_id = db.ObterPrimeiroVeiculoPorMarca(txt_marca.Text)
-        Dim km = db.ObterDistanciaTotalPorVeiculo(veiculo_id)
-        txt_km.Text = km.ToString
+        Try
+            Dim veiculo_id = db.ObterPrimeiroVeiculoPorMarca(txt_marca.Text)
+            Dim km = db.ObterDistanciaTotalPorVeiculo(veiculo_id)
+            txt_km.Text = km.ToString
+        Catch ex As IndexOutOfRangeException
+            MessageBox.Show("Não foram encontrados registos correspondentes a esta pesquisa.")
+        End Try
+
     End Sub
 
     Private Sub btn_viatura_mais_km_Click(sender As Object, e As EventArgs) Handles btn_viatura_mais_km.Click
@@ -123,16 +128,38 @@
         lbx_viatura_mais_km.Items.Add(marca)
     End Sub
 
-    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
-        Try
-            Dim r = grid1.CurrentRow()
-            Dim veiculo_id = db.ObterPrimeiroVeiculoPorMarca(r.Cells(1).Value)
-            Dim dias = Convert.ToInt32(r.Cells(2).Value)
-            Dim km = Convert.ToInt32(r.Cells(2).Value)
-            db.AtualizarViagem(veiculo_id, dias, km)
-        Catch
-            MessageBox.Show("Por favor, verifique os dados introduzidos.")
-        End Try
+    Private Sub btn_atualizar_registos_Click(sender As Object, e As EventArgs) Handles btn_atualizar_registos.Click
+        If UnsavedChangesList.Count = 0 Then
+            MessageBox.Show("Não há quaisquer alterações pendentes.")
+        Else
+            Dim itemsToRemove As New HashSet(Of Integer)
+            Try
+                For Each i In UnsavedChangesList
+                    Dim r = grid1.Rows(i)
+                    Dim viagem_id = r.Cells(0).Value
+                    Dim veiculo_id = db.ObterPrimeiroVeiculoPorMarca(r.Cells(1).Value)
+                    Dim dias = Convert.ToInt32(r.Cells(2).Value)
+                    Dim km = Convert.ToInt32(r.Cells(3).Value)
+                    db.AtualizarViagem(viagem_id, veiculo_id, dias, km)
+                    itemsToRemove.Add(i)
+                Next
+
+                For Each item In itemsToRemove
+                    UnsavedChangesList.Remove(item)
+                Next
+            Catch ex As IndexOutOfRangeException
+                MessageBox.Show("Não existe o veículo indicado. Por favor, verifique os dados introduzidos.")
+            Catch ex As Exception
+                MessageBox.Show(ex.ToString)
+                MessageBox.Show("Por favor, verifique os dados introduzidos.")
+            End Try
+        End If
+    End Sub
+
+    Private Sub grid1_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles grid1.CellValueChanged
+        If e.RowIndex > -1 Then
+            UnsavedChangesList.Add(e.RowIndex)
+        End If
 
     End Sub
 End Class
